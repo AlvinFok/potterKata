@@ -51,6 +51,22 @@ def fiveBooksDuplicated(potterKata):
     books = [2,2,2,2,2]
     assert potterKata.getPrice(books) == 60
     
-def threeBooksWithTwoduplicated(potterKata):
+def threeBooksWithOneDuplicated(potterKata):#5% discount
     books = [2,1,0,0,0]
     assert potterKata.getPrice(books) == 38.4
+    
+def threeBooksDuplicated(potterKafa):#10% discount
+    books = [2,2,2,0,0]
+    assert potterKafa.getPrice(books) == 43.2
+    
+def fiveBooksTwoDuplicated(potterKafa):#10% for three books, 5% for two books
+    books = [2,2,1,0,0]
+    assert potterKafa.getPrice(books) == 36.8
+    
+def sixBooksTwoDuplicated(potterKafa):#20% for four books, 5% for two books
+    books = [2,2,1,1,0]
+    assert potterKafa.getPrice(books) == 40.8
+    
+def allDiscountApplied(potterKafa):#
+    books = [3,2,4,2,1]
+    assert potterKafa.getPrice(books) == (30+25.6+15.2+8)

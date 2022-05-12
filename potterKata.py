@@ -8,11 +8,8 @@ class PotterKata:
     
     def getPrice(self, books:list):
         key = range(len(books))
-        books = dict(zip(key, books))
-        if self.__isNoBook(books):#check isn't have book if no then return 0
-            return 0
+        books = dict(zip(key, books))#cost list to dict
         
-        discountIndex = -1
         price = 0
         numberOfRemainingBook = self.__getNumbersOfBooks(books)
         while numberOfRemainingBook > 0:
@@ -34,12 +31,7 @@ class PotterKata:
             if books[key] > 0:
                 books[key] -= 1
                 numberOfDistinctBooks -=1
-        
-    def __isNoBook(self, books):
-        if self.__getNumbersOfBooks(books) == 0:
-            return True
-        
-        return False
+    
     
     def __getDiscount(self, index):
         return self.discount[index]
