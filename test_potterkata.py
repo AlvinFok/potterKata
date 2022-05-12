@@ -33,3 +33,20 @@ def test_fourDiffBook(potterKata):
 def test_fiveDiffBook(potterKata):
     books = [1,1,1,1,1]
     assert potterKata.getPrice(books) == 30
+    
+#test duplicated books' price
+def twoBooksDuplicated(potterKata):
+    books = [2,2,0,0,0]
+    assert potterKata.getPrice(books) == 30.4
+    
+def threeBooksDuplicated(potterKata):
+    books = [2,2,2,0,0]
+    assert potterKata.getPrice(books) == 43.2
+    
+def sourBooksDuplicated(potterKata):
+    books = [2,2,2,2,0]
+    assert potterKata.getPrice(books) == 51.2
+    
+def twoBooksDuplicated(potterKata):
+    books = [2,2,2,2,2]
+    assert potterKata.getPrice(books) == 60
