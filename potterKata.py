@@ -1,4 +1,4 @@
 class PotterKata:
     
     def getPrice(self, books:list):
-        return 0
+        return sum(books) * 8
