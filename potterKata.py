@@ -7,20 +7,36 @@ class PotterKata:
         self.discount = [1, 0.95, 0.9, 0.8, 0.75]#If only buy same books then no discount
     
     def getPrice(self, books:list):
+        key = range(len(books))
+        books = dict(zip(key, books))
         if self.__isNoBook(books):#check isn't have book if no then return 0
             return 0
+        
         discountIndex = -1
-        for i in books:
-            if i != 0:
-                discountIndex += 1
-                
-        discount = self.__getDiscount(discountIndex)
+        price = 0
+        numberOfRemainingBook = self.__getNumbersOfBooks(books)
+        while numberOfRemainingBook > 0:
+            numberOfDistinctBooks = self.__getNumberOfDistinctBooks(books)
+            numberOfRemainingBook = self.__getNumbersOfBooks(books)
+            
+            discount = self.__getDiscount(numberOfDistinctBooks-1)
+            price += numberOfDistinctBooks * 8 * discount
+            
+            self.__removeOneOfEachBooks(books, numberOfDistinctBooks)
+                    
         
-        price = sum(books) * 8 * discount
         return price
+
+    def __removeOneOfEachBooks(self, books, numberOfDistinctBooks):
+        for key in books:
+            if numberOfDistinctBooks == 0:
+                break
+            if books[key] > 0:
+                books[key] -= 1
+                numberOfDistinctBooks -=1
         
-    def __isNoBook(self, books:list):
-        if sum(books) == 0:
+    def __isNoBook(self, books):
+        if self.__getNumbersOfBooks(books) == 0:
             return True
         
         return False
@@ -28,9 +44,15 @@ class PotterKata:
     def __getDiscount(self, index):
         return self.discount[index]
     
+    def __getNumbersOfBooks(self, books:dict):
+        return sum(list(books.values()))
+    
+    def __getNumberOfDistinctBooks(self, books:dict):
+        return sum(i > 0 for i in books.values())
+    
 
-if __name__ == 'main':
-    potterKata = PotterKata()
-    books = [1,0,0,0,0]
-    print(potterKata.getPrice(books))
+
+potterKata = PotterKata()
+books = [1,0,0,0,0]
+print(potterKata.getPrice(books))
 # %%

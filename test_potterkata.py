@@ -43,10 +43,14 @@ def threeBooksDuplicated(potterKata):
     books = [2,2,2,0,0]
     assert potterKata.getPrice(books) == 43.2
     
-def sourBooksDuplicated(potterKata):
+def fourBooksDuplicated(potterKata):
     books = [2,2,2,2,0]
     assert potterKata.getPrice(books) == 51.2
     
-def twoBooksDuplicated(potterKata):
+def fiveBooksDuplicated(potterKata):
     books = [2,2,2,2,2]
     assert potterKata.getPrice(books) == 60
+    
+def threeBooksWithTwoduplicated(potterKata):
+    books = [2,1,0,0,0]
+    assert potterKata.getPrice(books) == 38.4
