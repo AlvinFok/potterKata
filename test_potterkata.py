@@ -13,3 +13,7 @@ def test_NoBook(potterKata):
 def test_oneBook(potterKata):
     books = [1,0,0,0,0]
     assert potterKata.getPrice(books) == 8
+    
+def test_multiSameBook(potterKata):
+    books = [3,0,0,0,0]
+    assert potterKata.getPrice(books) == 24
