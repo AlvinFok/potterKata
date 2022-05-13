@@ -11,15 +11,27 @@ class PotterKata:
         books = dict(zip(key, books))#cost list to dict
         
         price = 0
-        numberOfRemainingBook = self.__getNumbersOfBooks(books)
-        while numberOfRemainingBook > 0:
+        tenPercentDiscount = False
+        twentyFivePercentDiscount = False
+        
+        
+        while self.__getNumbersOfBooks(books) > 0:
             numberOfDistinctBooks = self.__getNumberOfDistinctBooks(books)
-            numberOfRemainingBook = self.__getNumbersOfBooks(books)
-            
+            if numberOfDistinctBooks == 5:
+                twentyFivePercentDiscount = True
+            elif numberOfDistinctBooks == 3:
+                tenPercentDiscount = True
+                
             discount = self.__getDiscount(numberOfDistinctBooks-1)
             price += numberOfDistinctBooks * 8 * discount
             
-            self.__removeOneOfEachBooks(books, numberOfDistinctBooks)
+            if twentyFivePercentDiscount and tenPercentDiscount:#25% and 10% can replace by two 20%
+                price -= 5 * 8 * 0.75
+                price -= 3 * 8 * 0.9
+                price += (4 * 8 * 0.8) * 2
+                
+            
+            books = self.__removeOneOfEachBooks(books, numberOfDistinctBooks)#update books state
                     
         
         return price
@@ -32,6 +44,7 @@ class PotterKata:
                 books[key] -= 1
                 numberOfDistinctBooks -=1
     
+        return books
     
     def __getDiscount(self, index):
         return self.discount[index]
